@@ -1,0 +1,35 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+      int sub_max = Integer.MIN_VALUE;
+		if (nums.length == 1) {
+			sub_max = nums[0];
+		}
+
+		for (int i = 0; i < nums.length; i++) {
+			int max = Integer.MIN_VALUE;
+			int ans = nums[i];
+            if (ans > max) {
+				max = ans;
+			}
+			for (int j = i + 1; j < nums.length; j++) {
+
+				ans = ans + nums[j];
+				if (ans > max) {
+					max = ans;
+				}
+
+			}
+			if ((i == nums.length-1 && max == Integer.MIN_VALUE)) {
+				if(nums[i]>max) {
+					max=nums[i];
+				}
+			}
+			if (max > sub_max) {
+				sub_max = max;
+			}
+
+		}
+
+		return sub_max;
+    }
+}
